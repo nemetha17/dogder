@@ -72,6 +72,7 @@ return (
       save = {save}
       saved = {saved}
       next = {next}
+      remove ={remove}
       />
     </Route>
     <Route path="/saved">
