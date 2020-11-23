@@ -1,5 +1,9 @@
 import React, {useEffect, useState } from "react";
+import {Redirect, Route, Switch, Link} from 'react-router-dom'
 import axios from 'axios'
+import Dogder from './Dogder'
+import Saved from './Saved'
+
 
 
 const App = () => {
@@ -49,22 +53,35 @@ if (!loaded) {
 
 return (
   <div>
-    {JSON.stringify(saved)}
-    <h1>Dogder</h1>
-    <img src={images.message} alt={images.message} style={{ width: 400}} />
-    <br />
-    <button onClick={() => save(images) }>{saved.includes(images)?'Unsave':'Save'}</button>
-    <button onClick={next}>Next</button>
-
-
     <ul>
-      {saved.map((image) =>(
-        <li key={image.message}>
-          {image.message}
-          <button onClick={() => remove(image)}>x</button>
-        </li>
-      ))}
+      <li>
+        <Link to="/">
+          Dogder
+        </Link>
+      </li>
+      <li>
+        <Link to="/saved">
+          Saved
+        </Link>
+      </li>
     </ul>
+    <Switch>
+    <Route exact path="/">
+      <Dogder 
+      images = {images}
+      save = {save}
+      saved = {saved}
+      next = {next}
+      />
+    </Route>
+    <Route path="/saved">
+      <Saved 
+      remove={remove}
+      saved = {saved}
+      />
+    </Route>
+    <Redirect path ="*" to="/" />
+    </Switch>
   </div>
 )
 
