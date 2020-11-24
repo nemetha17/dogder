@@ -1,8 +1,9 @@
 import React, {useEffect, useState } from "react";
-import {Redirect, Route, Switch, Link} from 'react-router-dom'
+import {Redirect, Route, Switch} from 'react-router-dom'
 import axios from 'axios'
 import Dogder from './Dogder'
 import Saved from './Saved'
+import Header from './Header'
 
 
 
@@ -53,18 +54,7 @@ if (!loaded) {
 
 return (
   <div>
-    <ul>
-      <li>
-        <Link to="/">
-          Dogder
-        </Link>
-      </li>
-      <li>
-        <Link to="/saved">
-          Saved
-        </Link>
-      </li>
-    </ul>
+    <Header />
     <Switch>
     <Route exact path="/">
       <Dogder 

@@ -1,13 +1,24 @@
 import React from "react"
-import Button from"./Button"
+import { css } from "styled-components/macro"
+
+import Button from "./Button"
+import Container from "./components/dogder/Container"
+import Image from "./components/dogder/Image"
 
 
 const Dogder = ({images,save,saved,next,remove }) => {
     return(
-    <div>
-    <h1>Dogder</h1>
-    <img src={images.message} alt={images.message} style={{ width: 400}} />
-    <br />
+    <div
+    css={css`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    `}>
+   <Image url={images.message} />
+    <Container>
     {saved.includes(images) ? (
           <Button
             color={saved.includes(images) ? "red" : "green"}
@@ -23,7 +34,8 @@ const Dogder = ({images,save,saved,next,remove }) => {
             Save
           </Button>
         )}
-    <button onClick={next}>Next</button>
+    <Button color="blue" onClick={next}>Next</Button>
+    </Container>
     </div>
     )
 }
