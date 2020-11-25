@@ -1,34 +1,23 @@
-import React, {useEffect, useState } from "react";
+import React, {useEffect, useReducer, useState } from "react";
 import {Redirect, Route, Switch} from 'react-router-dom'
 import axios from 'axios'
+import {reducer} from "./reducers/savedReducer"
 import Dogder from './Dogder'
 import Saved from './Saved'
 import Header from './Header'
-
+import { SavedProvider } from "./utils/SavedContext";
 
 
 const App = () => {
   const [images, setImages] = useState([])
   const [loaded, setLoaded] = useState(false)
-  const[saved, setSaved]= useState([])
 
 const next = async () =>{
   const resp = await axios("https://dog.ceo/api/breeds/image/random")
   setImages(resp.data);
 }
 
-const save = image => {
-  if(!saved.includes(image)) {
-    setSaved([...saved,image])
-  }
-}
-
-const remove =(i) =>{
-  const remaining = saved.filter(image => image.message!== i.message)
-  setSaved(remaining)
-}
-
-
+const [state, dispatch]= useReducer(reducer, [])
 
 
 useEffect(()=>{
@@ -53,27 +42,22 @@ if (!loaded) {
 }
 
 return (
-  <div>
+  <SavedProvider> 
     <Header />
     <Switch>
     <Route exact path="/">
       <Dogder 
       images = {images}
-      save = {save}
-      saved = {saved}
-      next = {next}
-      remove ={remove}
+      next = {next}      
       />
     </Route>
     <Route path="/saved">
       <Saved 
-      remove={remove}
-      saved = {saved}
       />
     </Route>
     <Redirect path ="*" to="/" />
     </Switch>
-  </div>
+  </SavedProvider>
 )
 
 }

@@ -4,9 +4,14 @@ import { css } from "styled-components/macro"
 import Button from "./Button"
 import Container from "./components/dogder/Container"
 import Image from "./components/dogder/Image"
+import {useSaved} from "./hooks/useSaved"
 
 
-const Dogder = ({images,save,saved,next,remove }) => {
+const Dogder = ({images,next}) => {
+
+  const {saved, add, unsave} = useSaved();
+
+
     return(
     <div
     css={css`
@@ -22,13 +27,13 @@ const Dogder = ({images,save,saved,next,remove }) => {
     {saved.includes(images) ? (
           <Button
             color={saved.includes(images) ? "red" : "green"}
-            onClick={() => remove(images)}
+            onClick={() => unsave(images)}
           >
             Unsave
           </Button>
         ) : (
           <Button
-            onClick={() => save(images)}
+            onClick={() => add(images)}
             color={saved.includes(images) ? "red" : "green"}
           >
             Save
