@@ -5,11 +5,14 @@ import Button from "./Button"
 import Container from "./components/dogder/Container"
 import Image from "./components/dogder/Image"
 import {useSaved} from "./hooks/useSaved"
+import useLocalStorage from "./hooks/useLocalStorage"
+import {initialState ,reducer} from "./reducers/savedReducer"
 
 
 const Dogder = ({images,next}) => {
 
   const {saved, add, unsave} = useSaved();
+  const {values,setValue, deleteValue, clearLocalStorage} = useLocalStorage ("saved",initialState)
 
 
     return(
@@ -26,7 +29,7 @@ const Dogder = ({images,next}) => {
     <Container>
     {saved.includes(images) ? (
           <Button
-            color={saved.includes(images) ? "red" : "green"}
+            color={values.includes(images) ? "red" : "green"}
             onClick={() => unsave(images)}
           >
             Unsave
@@ -34,7 +37,7 @@ const Dogder = ({images,next}) => {
         ) : (
           <Button
             onClick={() => add(images)}
-            color={saved.includes(images) ? "red" : "green"}
+            color={values.includes(images) ? "red" : "green"}
           >
             Save
           </Button>
