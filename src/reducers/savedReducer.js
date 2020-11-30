@@ -7,7 +7,12 @@ export const reducer =(state, {type, payload}) => {
                 return [...state, payload];
               }
               return state;
-        case 'remove':
+        case 'reload':
+            if (!state.includes(payload)) {
+                return [...state, payload];
+              }
+              return state;
+        case 'unsave':
             return state.filter(s=>s!== payload);
         case 'clear':
              return initialState;

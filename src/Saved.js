@@ -2,24 +2,36 @@ import React from "react"
 import {useSaved} from "./hooks/useSaved"
 import useLocalStorage from "./hooks/useLocalStorage"
 import {initialState ,reducer} from "./reducers/savedReducer"
+import UnSaveButton from "./UnSaveButton"
 
 
-const Saved = ({remove}) => {
-  const {saved, unsave, clear} = useSaved();
+const Saved = () => {
+  const {saved, unsave, clear, add, reload} = useSaved();
   const {values,setValue, deleteValue, clearLocalStorage} = useLocalStorage ("saved",initialState)
-    
+
+  const check= () =>{
+    if(values.length > 0) {
+    if(!saved.length >0){
+        {values.map((image) =>(
+          reload(image)
+        ))}
+      }
+    }
+  }
+
   
-  return(
-    <div>   
+  return(  
+    <div>  
     <ul>
       {saved.map((image) =>(
         <li key={image.message}>
           {image.message}
-          <button onClick={() => unsave(image)}>unsave</button>
+          <UnSaveButton onClick={() => unsave(image)}>unsave</UnSaveButton>
         </li>
       ))}
     </ul>
-    <button onClick={clear}>clear</button> 
+    <UnSaveButton onClick={clear}>clear</UnSaveButton> 
+    <UnSaveButton onClick={check}>reload</UnSaveButton> 
     </div>
     )
 }

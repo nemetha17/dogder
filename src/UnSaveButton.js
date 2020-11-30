@@ -1,9 +1,9 @@
 import styled from "styled-components/macro"
 
-const Button = styled.button`
+const UnSaveButton = styled.button`
   color: #000;
   border-radius: 10px;
-  background: ${(props) => (props.color ? props.color : "green")};
+  background: red;
   color: white;
   padding: 10px;
   border: 0px;
@@ -12,8 +12,8 @@ const Button = styled.button`
   text-transform: capitalize;
 
   :hover {
-    background: rgba(0,255,0);
+    background: rgba(255,0,0, 0.5);
   }
 `
 
-export default Button
+export default UnSaveButton

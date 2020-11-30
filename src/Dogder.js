@@ -1,7 +1,9 @@
 import React from "react"
 import { css } from "styled-components/macro"
 
-import Button from "./Button"
+import SaveButton from "./SaveButton"
+import NextButton from "./NextButton"
+import UnSaveButton from "./UnSaveButton"
 import Container from "./components/dogder/Container"
 import Image from "./components/dogder/Image"
 import {useSaved} from "./hooks/useSaved"
@@ -28,21 +30,19 @@ const Dogder = ({images,next}) => {
    <Image url={images.message} />
     <Container>
     {saved.includes(images) ? (
-          <Button
-            color={values.includes(images) ? "red" : "green"}
+          <UnSaveButton
             onClick={() => unsave(images)}
           >
             Unsave
-          </Button>
+          </UnSaveButton>
         ) : (
-          <Button
+          <SaveButton
             onClick={() => add(images)}
-            color={values.includes(images) ? "red" : "green"}
           >
             Save
-          </Button>
+          </SaveButton>
         )}
-    <Button color="blue" onClick={next}>Next</Button>
+    <NextButton color="blue" onClick={next}>Next</NextButton>
     </Container>
     </div>
     )

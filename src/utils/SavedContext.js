@@ -10,13 +10,18 @@ export const SavedProvider = (props) =>{
     const {values,setValue, deleteValue, clearLocalStorage} = useLocalStorage ("saved",initialState)
 
     const add = (image) =>{
-        setValue([...values, image])
+        if (!values.includes(image)) {
+            setValue([...values, image])
+        }
         dispatch({ type:"add", payload: image});
+    }
+    const reload = (image) =>{
+        dispatch({ type:"reload", payload: image});
     }
 
     const unsave =(i) =>{
         deleteValue(i)
-        dispatch({type:"remove", payload: i});
+        dispatch({type:"unsave", payload: i});
     }
 
     const clear = () =>{
@@ -27,5 +32,5 @@ export const SavedProvider = (props) =>{
     
 
 
-    return <SavedContext.Provider value={{saved, add, unsave, clear }} {...props} />
+    return <SavedContext.Provider value={{saved, add, unsave, clear, reload }} {...props} />
 }
