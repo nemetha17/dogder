@@ -1,8 +1,13 @@
-import React from "react"
+import React, { useState } from "react";
 import {useSaved} from "./hooks/useSaved"
 import useLocalStorage from "./hooks/useLocalStorage"
 import {initialState ,reducer} from "./reducers/savedReducer"
 import UnSaveButton from "./UnSaveButton"
+import SavedImage from "./components/saved/SavedImage"
+import { css } from "styled-components/macro"
+import axios from 'axios'
+import Link from "./Link"
+
 
 
 const Saved = () => {
@@ -19,19 +24,29 @@ const Saved = () => {
     }
   }
 
+
+
   
   return(  
-    <div>  
-    <ul>
+    <div
+    css={css`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    `}>  
+    <ul >
       {saved.map((image) =>(
-        <li key={image.message}>
-          {image.message}
-          <UnSaveButton onClick={() => unsave(image)}>unsave</UnSaveButton>
+        <li  key={image.message} >
+          <SavedImage url={image.message} />
+          <UnSaveButton  onClick={() => unsave(image) }>unsave</UnSaveButton>
         </li>
       ))}
-    </ul>
+      </ul>
     <UnSaveButton onClick={clear}>clear</UnSaveButton> 
-    <UnSaveButton onClick={check}>reload</UnSaveButton> 
+    <UnSaveButton onClick={check} >reload</UnSaveButton> 
     </div>
     )
 }
