@@ -14,7 +14,6 @@ import {initialState ,reducer} from "./reducers/savedReducer"
 const Dogder = ({images,next}) => {
 
   const {saved, add, unsave} = useSaved();
-  const {values,setValue, deleteValue, clearLocalStorage} = useLocalStorage ("saved",initialState)
 
 
     return(

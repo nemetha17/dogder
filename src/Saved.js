@@ -11,8 +11,8 @@ import Link from "./Link"
 
 
 const Saved = () => {
-  const {saved, unsave, clear, add, reload} = useSaved();
-  const {values,setValue, deleteValue, clearLocalStorage} = useLocalStorage ("saved",initialState)
+  const {saved, unsave, clear, reload} = useSaved();
+  const {values} = useLocalStorage ("saved",initialState)
 
   const check= () =>{
     if(values.length > 0) {
