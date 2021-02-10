@@ -21,3 +21,7 @@
 A Dodger lapon az api segitségével véletlenszerű sorrendben töltödnek be a képek. Ekkor kettő lehetőség van elmenthetjük vagy ha már egy mentett kép jelenik meg akkor kivehetjük a mentett képek közüll az adott képet, a másik pedig a "next" gomb segitségével kérhetjük a következőt.
 
 A Saved lapon a mentett képek jelennek meg egymás alatt. Mindegyik képhez tartozik egy "unsave" gomb amivel kievehetjük a képeket a mentett képek közüll. Az képek után található egy "clear" gomb amellyel az ősszes mentett kpet tölörni tudjuk. A program tárolja is a korábban mentett képek listáját ezt a "reload" gomb segítségével lehet vissza tölteni.
+
+
+
+
